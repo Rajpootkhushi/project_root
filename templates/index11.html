@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Transaction Analyzer</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .jumbotron {
+            background-image: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+        }
+        .jumbotron h1 {
+            font-weight: bold;
+            font-size: 3rem;
+        }
+        .jumbotron p {
+            font-size: 1.2rem;
+        }
+        .form-group {
+            margin-top: 2rem;
+        }
+        .btn-primary {
+            background-color: #2575fc;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1b5bbf;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer span {
+            font-size: 0.9rem;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center mt-5 shadow-lg">
+            <h1 class="display-4">Cryptocurrency Transaction Analyzer</h1>
+            <p class="lead">Upload your transaction CSV file to analyze for suspicious activities.</p>
+        </div>
+        <form action="/analyze" method="POST" enctype="multipart/form-data" class="text-center">
+            <div class="form-group">
+                <input type="file" name="file" class="text-center" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg shadow-lg">Analyze Transactions</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Suspicious Transactions Detected</h1>
+        <hr>
+        {% if suspicious_transactions %}
+            <h3>Flagged Transactions:</h3>
+            <ul class="list-group">
+                {% for transaction in suspicious_transactions %}
+                    <li class="list-group-item">Suspicious Transaction ID: {{ transaction }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-success text-center">
+                No suspicious transactions detected.
+            </div>
+        {% endif %}
+
+        <div class="mt-5">
+            <h3 class="text-center">Transaction Flow Visualization</h3>
+            <div id="sankey-chart" class="mt-3"></div>
+        </div>
+
+        <div class="mt-5">
+            <h3 class="text-center">Hashes of Suspicious Transactions</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for node, subgraph_hash in subgraph_hashes.items() %}
+                            <li class="list-group-item">
+                                Transaction ID: {{ node }} - Hash: {{ subgraph_hash }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        // Safely parse the JSON string into JavaScript object
+        const sankeyData = JSON.parse('{{ sankey_data | safe }}');
+        Plotly.newPlot('sankey-chart', sankeyData);
+    </script>
+</body>
+</html>

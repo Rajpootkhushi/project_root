@@ -1,0 +1,23 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.jumbotron {
+    background-color: #007bff;
+    color: white;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+}
+
+footer .container {
+    padding: 10px 0;
+}
+
+#sankey-chart {
+    width: 100%;
+    height: 600px;
+}
